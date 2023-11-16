@@ -1,12 +1,10 @@
-using System;
-
 public class JournalEntry 
 {
-    public string _entryNumber = "";
-    public string _dateTime = "";
-    public string _journalPrompt = "";
-    public string _journalEntry = "";
-    public string _journalFile = "";
+    public string EntryNumber { get; set; } = "";
+    public string DateTime { get; set; } = "";
+    public string JournalPrompt { get; set; } = "";
+    public string JournalEntryText { get; set; } = "";
+    public string JournalFile { get; set; } = "";
 
 
     public JournalEntry()
@@ -14,12 +12,9 @@ public class JournalEntry
 
     }
 
-    public void Display()
+    public string GetDisplayInfo()
     {
-        Console.WriteLine($"\nEntry Number: {_entryNumber}");
-        Console.WriteLine($"Date: {_dateTime}");
-        Console.WriteLine($"Prompt: {_journalPrompt}");
-        Console.WriteLine($"Entry: {_journalEntry}");
+        return $"\nEntry Number: {EntryNumber}\nDate: {DateTime}\nPrompt: {JournalPrompt}\nEntry: {JournalEntryText}";
     }
 
 
