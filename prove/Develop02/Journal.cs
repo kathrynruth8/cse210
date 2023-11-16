@@ -20,6 +20,6 @@ public class Journal;
 
     public void CreateJournalFile()
     {
-        
+        Console.Write("What is your file name?")
     }
 }
