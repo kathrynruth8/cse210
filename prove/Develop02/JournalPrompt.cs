@@ -1,6 +1,6 @@
 public class JournalPrompt
 {
-    private static string[] _prompt = {
+    private static string[] prompt = {
         "Write about something positive that happened to you recently that made you feel more fortunate. ",
         "Name five things that make you smile. Reflect on how these affect your mood. ",
         "Write down five objects found in nature you're grateful for. ",
@@ -37,7 +37,7 @@ public class JournalPrompt
         "Write down one thing about each family member you’re grateful for." 
     };
 
-    public List<string> _journalPrompt = new List<string>(_prompt);
+    public List<string> journalPrompt = new List<string>(prompt);
     
 
     public JournalPrompt()
@@ -48,16 +48,16 @@ public class JournalPrompt
     public void Display()
     {
         var random = new Random();
-        int index = random.Next(_journalPrompt.Count);
-        string journalPrompt = _journalPrompt[index];
-        Console.WriteLine($"\n{_journalPrompt}");
+        int index = random.Next(journalPrompt.Count);
+        string journalPrompt = journalPrompt[index];
+        Console.WriteLine($"\n{journalPrompt}");
     }
 
     public string GetPrompt()
     {
         var random = new Random();
-        int index = random.Next(_journalPrompt.Count);
-        string journalPrompt = _journalPrompt[index];
+        int index = random.Next(journalPrompt.Count);
+        string journalPrompt = journalPrompt[index];
 
         return journalPrompt;
 

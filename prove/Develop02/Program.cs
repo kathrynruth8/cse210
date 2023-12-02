@@ -22,7 +22,7 @@ class Program
             {
                 string entryId = GetEntryId();
                 string dateInfo = GetDateTime();
-                string prompt = jp.GetPrompt();
+                string prompt = journalPrompt.GetPrompt();
 
                 JournalEntry journalentry = new JournalEntry();
                 journalentry.EntryNumber = entryId;
@@ -32,9 +32,9 @@ class Program
                 Console.WriteLine($"Here is your prompt: {prompt}");
                 Console.WriteLine("*****");
                 string userEntry = Console.ReadLine();
-                entry._journalEntry = userEntry;
+                entry.journalEntry = userEntry;
 
-                journal._journal.Add(entry);
+                journal.journal.Add(entry);
             }
 // Display Journal Entries
             else if (action == 2)
@@ -42,24 +42,62 @@ class Program
                 journal.Display();
             }
 // Load file
-            else if (action == 3);
+            else if (action == 3)
             {
                 journal.LoadJournalFile();
             }    
 // Save file
-            else if (action == 4);
+            else if (action == 4)
             {
                 journal.SaveJournalFile();
             }
 // Quit
-            else if (action == 5);
+            else if (action == 5)
             {
                 Console.WriteLine("Thank you for using the Journal App! See you later alligator!");
             }
-            else()
+            else
             {
-                Console.Writeline("That was not a valid option, please try again.")
+                Console.WriteLine("That was not a valid option, please try again.");
             }
     }
 }
+static int Choices()
+{
+    string Choices = @"
+Please select one of the following choices:
+1. Write
+2. Display
+3. Load
+4. Save
+5. Quit
+What would you like to do? ";
+
+        Console.Write(Choices);
+        string userInput = Console.ReadLine();
+        int action = 0;
+        return action;
+}
+
+static int GetDateTime()
+{
+    DateTime now = DateTime.Now;
+        string currentDateTime = now.ToString("F");
+        return currentDateTime;
+}
+static void AddJournalEntry()
+    // Method to add entry to text file
+    {
+        string MyJournalFile = "MyJournal.txt";
+        File.AppendAllText(MyJournalFile, "");
+    }
+
+    static string GetEntryId()
+    {
+        Guid entryuuid = Guid.NewGuid();
+        string entryuuidAsString = entryuuid.ToString();
+
+        return entryuuidAsString;
+    }
+
 }
