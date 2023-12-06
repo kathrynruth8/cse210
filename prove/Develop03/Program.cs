@@ -4,22 +4,39 @@ class Program
 {
     static void Main(string[] args)
     {
-        
-        Console.WriteLine("Scripture") // Have this input the book, chapter, verse, & text
-        Console.WriteLine(" ") // Prints a blank line
-        Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-        Console.ReadLine();
+        string exit = "noquit";
+        Scripture scrip = new Scripture();
 
-// CODE HELPS
+        while (exit != "quit"){
+            // Clear Console
+            Console.Clear();
+            //Call check within scripture class if it is completely hidden
+            //Store variable from method to determine what to do next
+            string next = scrip.IsCompletelyHidden();
+            // Call Display Scripture
+            scrip.DisplayScripture();
+            
+            //Write blank line nd instructions
+            Console.WriteLine("");
+            Console.Write("Press enter or type quit to exit: ");
+            
+            // Read user inpuit
+            exit = Console.ReadLine();
 
-// // This will start by displaying "AAA" and waiting for the user to press the enter key
-// Console.WriteLine("AAA");
-// Console.ReadLine();
-
-// // This will clear the console
-// Console.Clear();
-
-// // This will show "BBB" in the console where "AAA" used to be
-// Console.WriteLine("BBB");
+            
+            
+            //Id not completely hidden, hide next word
+            if (next == "next"){
+                scrip.HideRandomWord();
+            }
+            //Else quit program
+            else{
+                Console.Clear();
+                scrip.DisplayScripture();
+                Console.WriteLine("\nThe scripture is completely hidden.");
+                exit = "quit";
+            }
+            
+        }
     }
 }
