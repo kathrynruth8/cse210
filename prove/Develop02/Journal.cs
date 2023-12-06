@@ -1,18 +1,17 @@
 public class Journal
 {
     public List<JournalEntry> journal = new List<JournalEntry>();
-    private string journalName;
+    private string userFileName; // Added declaration for file handling
 
     public Journal() {}
 
-    public void Display(){
-        Console.WriteLine("\n********** Journal Entries **********");
+
+    public void Display()
+    {
         foreach (JournalEntry journalEntry in journal)
         {
-            journalEntry.Display();
+            Console.WriteLine(journalEntry.GetDisplayInfo()); // Use GetDisplayInfo method from JournalEntry
         }
-        Console.WriteLine("\n******************** End ********************");
-        
     }
 
     public string GetFileName() {
@@ -37,28 +36,31 @@ public class Journal
         }
     }
 
-    public void SaveJournalFile(string userFileName) {
-        using (StreamWriter outputFile = new StreamWriter(userFileName))
+    public void SaveJournalFile(string fileName)
+    {
+        using (StreamWriter outputFile = new StreamWriter(fileName))
         {
             foreach (JournalEntry journalEntry in journal)
             {
-                outputFile.WriteLine($"{JournalEntry.EntryNumber}; {JournalEntry.DateTime}; {JournalEntry.JournalPrompt}; {JournalEntry.JournalEntry}");
+                outputFile.WriteLine($"{journalEntry.EntryNumber}; {journalEntry.DateTime}; {journalEntry.JournalPrompt}; {journalEntry.JournalEntryText}");
             }
         }
     }
 
-    public void AppendJournalFile(string userFileName) {
-        using (StreamWriter outputFile = new StreamWriter(userFileName, append: true))
+    public void AppendJournalFile(string fileName)
+    {
+        using (StreamWriter outputFile = new StreamWriter(fileName, append: true))
         {
             foreach (JournalEntry journalEntry in journal)
             {
-                outputFile.WriteLine($"{JournalEntry.EntryNumber}; {JournalEntry.DateTime}; {JournalEntry.JournalPrompt}; {JournalEntry.JournalEntry}");
+                outputFile.WriteLine($"{journalEntry.EntryNumber}; {journalEntry.DateTime}; {journalEntry.JournalPrompt}; {journalEntry.JournalEntryText}");
             }
         }
     }
 
-    public void LoadJournalFile() {
-        GetFileName() = userFileName;
+    public void LoadJournalFile()
+    {
+        userFileName = GetFileName(); // Assign userFileName using GetFileName method
 
         if (File.Exists(userFileName))
         {
@@ -72,7 +74,7 @@ public class Journal
                 entry.EntryNumber = entries[0];
                 entry.DateTime = entries[1];
                 entry.JournalPrompt = entries[2];
-                entry.JournalEntry = entries[3];
+                entry.JournalEntryText = entries[3];
 
                 journal.Add(entry);
             }

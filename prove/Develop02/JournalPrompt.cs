@@ -1,4 +1,5 @@
 public class JournalPrompt
+
 {
     private static string[] prompt = {
         "Write about something positive that happened to you recently that made you feel more fortunate. ",
@@ -49,18 +50,16 @@ public class JournalPrompt
     {
         var random = new Random();
         int index = random.Next(journalPrompt.Count);
-        string journalPrompt = journalPrompt[index];
-        Console.WriteLine($"\n{journalPrompt}");
+        string selectedPrompt = journalPrompt[index];
+        Console.WriteLine($"\n{selectedPrompt}");
     }
 
     public string GetPrompt()
     {
         var random = new Random();
         int index = random.Next(journalPrompt.Count);
-        string journalPrompt = journalPrompt[index];
-
-        return journalPrompt;
-
+        string selectedPrompt = journalPrompt[index];
+        return selectedPrompt;
     }
 
 }

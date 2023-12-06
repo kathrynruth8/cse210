@@ -4,17 +4,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        int[] validNumbers = {1, 2, 3, 4, 5};
         int action = 0;
         Console.WriteLine("**** Welcome to the Journal App ****");
-        // Create new journal reference/list
+        
         Journal journal = new Journal();
         JournalPrompt journalPrompt = new JournalPrompt();
 
         while (action != 5)
         {
-            // Ask for user input (1-5)
-            //Call Choices
             action = Choices();
 
 // Write Journal Entry
@@ -24,17 +21,17 @@ class Program
                 string dateInfo = GetDateTime();
                 string prompt = journalPrompt.GetPrompt();
 
-                JournalEntry journalentry = new JournalEntry();
-                journalentry.EntryNumber = entryId;
-                journalentry.DateTime = dateInfo;
-                journalentry.JournalPrompt = prompt;
+                JournalEntry journalEntry = new JournalEntry();
+                journalEntry.EntryNumber = entryId;
+                journalEntry.DateTime = dateInfo;
+                journalEntry.JournalPrompt = prompt;
 
                 Console.WriteLine($"Here is your prompt: {prompt}");
                 Console.WriteLine("*****");
                 string userEntry = Console.ReadLine();
-                entry.journalEntry = userEntry;
+                journalEntry.JournalEntryText = userEntry; // Assign user entry to the journal entry text
 
-                journal.journal.Add(entry);
+                journal.journal.Add(journalEntry);   
             }
 // Display Journal Entries
             else if (action == 2)
@@ -49,7 +46,15 @@ class Program
 // Save file
             else if (action == 4)
             {
-                journal.SaveJournalFile();
+                string userFileName = journal.GetFileName(); // Retrieve the file name
+                if (!string.IsNullOrEmpty(userFileName))
+                {
+                    journal.SaveJournalFile(userFileName); // Pass the file name to SaveJournalFile method
+                }
+                else
+                {
+                    Console.WriteLine("Invalid file name. Please enter a valid file name.");
+                }
             }
 // Quit
             else if (action == 5)
@@ -63,34 +68,34 @@ class Program
     }
 }
 static int Choices()
-{
-    string Choices = @"
-Please select one of the following choices:
-1. Write
-2. Display
-3. Load
-4. Save
-5. Quit
-What would you like to do? ";
+    {
+        string Choices = @"
+        Please select one of the following choices:
+        1. Write
+        2. Display
+        3. Load
+        4. Save
+        5. Quit
+        What would you like to do? ";
 
         Console.Write(Choices);
         string userInput = Console.ReadLine();
-        int action = 0;
+        int action = int.Parse(userInput); // Parse user input to int
         return action;
-}
+    }
 
-static int GetDateTime()
-{
-    DateTime now = DateTime.Now;
+static string GetDateTime() // Change return type to string
+    {
+        DateTime now = DateTime.Now;
         string currentDateTime = now.ToString("F");
         return currentDateTime;
-}
-static void AddJournalEntry()
-    // Method to add entry to text file
+    }
+static void AddJournalEntry(string userEntry) // Accept user entry as argument
     {
         string MyJournalFile = "MyJournal.txt";
-        File.AppendAllText(MyJournalFile, "");
+        File.AppendAllText(MyJournalFile, userEntry + Environment.NewLine); // Append user entry to the file
     }
+
 
     static string GetEntryId()
     {
