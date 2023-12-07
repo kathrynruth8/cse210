@@ -1,4 +1,4 @@
-class Address
+public class Address
 {
     private string StreetAddress1 { get; set; }
     private string StreetAddress2 { get; set; }
