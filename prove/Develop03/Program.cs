@@ -44,7 +44,7 @@ class Program
             
             //Id not completely hidden, hide next word
             if (next == "next"){
-                selectedScripture.HideRandomWord();
+                selectedScripture.HideRandomWords();
             }
             //Else quit program
             else{

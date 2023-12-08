@@ -24,16 +24,15 @@ public class Scripture
         Console.WriteLine();
     }
 
-    public void HideRandomWord()
+    public void HideRandomWords()
     {
-        int randI;
-        do
-        {
-            randI = Rand.Next(0, Words.Count);
-        } while (UsedRand.Contains(randI));
+        int wordsToHide = Word.HideRandomWords(Words);
+        Console.WriteLine($"Hiding {wordsToHide} words.");
 
-        Words[randI].Hide();
-        UsedRand.Add(randI);
+        if (IsCompletelyHidden() == "exit")
+        {
+            Console.WriteLine("All words are hidden.");
+        }
     }
 
     public string IsCompletelyHidden()
