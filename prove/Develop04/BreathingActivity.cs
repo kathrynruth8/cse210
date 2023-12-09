@@ -1,10 +1,11 @@
 public class BreathingActivity : Activity
 {
-    // private string BreathingIntro = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
+    private string BreathingIntro = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
 
-   public BreathingActivity(string activityName, int activityDuration, string activityDescription)
-        : base(activityName, activityDuration, activityDescription)
+    public BreathingActivity(string activityName, int activityDuration)
+        : base(activityName, activityDuration, "")
     {
+        ActivityIntro = BreathingIntro; // Assigning BreathingIntro to ActivityIntro
     }
 
     public void StartBreathing()
@@ -36,6 +37,13 @@ public class BreathingActivity : Activity
                 Console.WriteLine("Breathe out...");
                 Pause(breathDuration);
                 totalDuration -= breathDuration;
+            }
+
+            if (totalDuration >= holdDuration)
+            {
+                Console.WriteLine("Hold...");
+                Pause(holdDuration);
+                totalDuration -= holdDuration;
             }
         }
 

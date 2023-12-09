@@ -6,20 +6,23 @@ public class ReflectingActivity : Activity
         "Think of a time when you did something really difficult.",
         // Add more prompts as needed
     };
-
+    private string ReflectingIntro = "This activity will help you reflect on the good things in your life by having you write a response to a given prompt.";
     private List<string> UserResponses = new List<string>();
 
-    public ReflectingActivity(string activityName, int activityDuration, string activityDescription)
-        : base(activityName, activityDuration, activityDescription)
+    public ReflectingActivity(string activityName, int activityDuration)
+        : base(activityName, activityDuration, "")
     {
+        ActivityIntro = ReflectingIntro;
     }
 
     public void StartReflecting()
     {
         StartActivity();
         var random = new Random();
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(ActivityDuration);
 
-        for (int i = 0; i < ActivityDuration; i++)
+        while (DateTime.Now < endTime)
         {
             int index = random.Next(ReflectingPrompts.Count);
             string prompt = ReflectingPrompts[index];
@@ -31,7 +34,9 @@ public class ReflectingActivity : Activity
             AskReflectionQuestions();
         }
 
+        Console.WriteLine("Time's up!");
         FinishActivity();
+
     }
 
     private void AskReflectionQuestions()

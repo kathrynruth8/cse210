@@ -13,9 +13,10 @@ public class ListingActivity : Activity
     private List<string> UserList = new List<string>{};
     
 // Constructors
-    public ListingActivity(string activityName, int activityDuration, string activityDescription)
-        : base(activityName, activityDuration, activityDescription)
+    public ListingActivity(string activityName, int activityDuration)
+        : base(activityName, activityDuration, "")
     {
+        ActivityIntro = ListingIntro;
     }
     
 // Methods
@@ -23,13 +24,11 @@ public void DisplayIntroduction()
     {
         Console.WriteLine(ListingIntro);
     }
-    
 public void StartListing()
     {
         StartActivity();
         int totalDuration = ActivityDuration;
-        int promptDuration = 5;
-        
+
         var random = new Random();
         int index = random.Next(ListingPrompts.Count);
         string question = ListingPrompts[index];
@@ -37,18 +36,19 @@ public void StartListing()
         Console.WriteLine($"\n--- {question} ---");
         Pause(8);
 
-        Console.WriteLine("How many items can you list?");
-        int itemsToEnter = ActivityDuration;
+        Console.WriteLine("You have " + totalDuration + " seconds to list items.");
+        DateTime startTime = DateTime.Now;
 
-        for (int i = 0; i < itemsToEnter; i++)
+        while ((DateTime.Now - startTime).TotalSeconds < totalDuration)
         {
-            Console.Write("Enter item " + (i + 1) + ": ");
+            Console.Write("Enter an item: ");
             string userInput = Console.ReadLine();
             UserList.Add(userInput);
         }
 
         Console.WriteLine("You listed " + UserList.Count + " items.");
+        UserList.Clear();
         FinishActivity();
-    }
+    }   
 }
 

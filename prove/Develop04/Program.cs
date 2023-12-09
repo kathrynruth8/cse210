@@ -4,9 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        BreathingActivity breathing = new BreathingActivity("Breathing Activity", 44, "This activity will help you relax by guiding you through slow breathing exercises.");
-        ListingActivity listing = new ListingActivity("Listing Activity", 30, "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
-        ReflectingActivity reflecting = new ReflectingActivity("Reflecting Activity", 45, "This activity will help you reflect on times in your life when you have shown strength and resilience.");
+        BreathingActivity breathing = new BreathingActivity("Breathing Activity", 44);
+        ListingActivity listing = new ListingActivity("Listing Activity", 30);
+        ReflectingActivity reflecting = new ReflectingActivity("Reflecting Activity", 45);
 
         Console.WriteLine("Welcome to the Mindfulness Program!");
 
