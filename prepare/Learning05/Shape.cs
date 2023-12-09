@@ -1,21 +1,22 @@
-public class Shape
+public abstract class Shape
 {
 // Attributes
-private string _color;
+private string Color;
 // Constructors
 public Shape(string color)
 {
-    _color = color
+    Color = color;
 }
 public string GetColor()
     {
-        return _color;
+        return Color;
     }
 
 public void SetColor(string color)
     {
-        _color = color;
+        Color = color;
     }
 // Methods
 public abstract double GetArea();
+
 }

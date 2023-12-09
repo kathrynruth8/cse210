@@ -4,34 +4,51 @@ class Program
 {
     static void Main(string[] args)
     {
-// 1. Have a menu system to allow the user to choose an activity.
-        // This will clear the console
-        Console.Clear();
-        Console.Write("\n*** Welcome to the Mindfulness Program ****\n");
-        Console.Write("\nMenu Options:\n");
-        Console.Write("1. Start breathing activity");
-        Console.Write("\n2. Start reflecting activity");
-        Console.Write("\n3. Start listing activity");
-        Console.Write("\n4. Quit");
-        Console.Write("\nSelect a choice from the menu: ");
-        
-        private string _userInput; 
+        BreathingActivity breathing = new BreathingActivity("Breathing Activity", 44, "This activity will help you relax by guiding you through slow breathing exercises.");
+        ListingActivity listing = new ListingActivity("Listing Activity", 30, "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+        ReflectingActivity reflecting = new ReflectingActivity("Reflecting Activity", 45, "This activity will help you reflect on times in your life when you have shown strength and resilience.");
 
-// 2. Each activity should start with a common starting message that provides 
-// the name of the activity, a description, and asks for and sets the duration 
-// of the activity in seconds. Then, it should tell the user to prepare to begin 
-// and pause for several seconds.
+        Console.WriteLine("Welcome to the Mindfulness Program!");
 
-// 3. Each activity should end with a common ending message that tells the user they have done a 
-// good job, and pause and then tell them the activity they have completed and the length of 
-// time and pauses for several seconds before finishing.
+        int choice;
+        do
+        {
+            Console.WriteLine("\nChoose an activity:");
+            Console.WriteLine("1. Start breathing activity");
+            Console.WriteLine("2. Start listing activity");
+            Console.WriteLine("3. Start reflecting activity");
+            Console.WriteLine("4. Quit");
 
-    
-// 4. Whenever the application pauses it should show some kind of animation to the user, 
-// such as a spinner, a countdown timer, or periods being displayed to the screen.
+            Console.Write("Select a choice from the menu: ");
+            if (!int.TryParse(Console.ReadLine(), out choice))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+                continue;
+            }
 
-// 5. The interface for the program should remain generally true to the one shown in the video demo.
+            switch (choice)
+            {
+                case 1:
+                    breathing.StartBreathing();
+                    break;
 
-// 6. Provide activities for reflection, breathing, and enumeration, as described:
+                case 2:
+                    listing.StartListing();
+                    break;
+
+                case 3:
+                    reflecting.StartReflecting();
+                    reflecting.DisplayUserResponses();
+                    break;
+
+                case 4:
+                    Console.WriteLine("Exiting the Mindfulness Program. Goodbye!");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice. Please enter a valid number.");
+                    break;
+            }
+        } while (choice != 4);
     }
 }

@@ -1,22 +1,44 @@
 public class BreathingActivity : Activity
 {
-    private string _breathingIntro = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
+    // private string BreathingIntro = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
 
-    public BreathingActivity(string activityName, int activityDuration)
-        :base(activityName, activityDuration)
+   public BreathingActivity(string activityName, int activityDuration, string activityDescription)
+        : base(activityName, activityDuration, activityDescription)
     {
-        
     }
-// 1.The activity should begin with the standard starting message and prompt for the duration that is used by all activities.
 
-// 2. The description of this activity should be something like: "This activity will help 
-// you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing."
+    public void StartBreathing()
+    {
+        StartActivity();
+        int totalDuration = ActivityDuration;
 
-// 3. After the starting message, the user is shown a series of messages alternating between "Breathe in..." and "Breathe out..."
+        int breathDuration = 4;
+        int holdDuration = 3;
 
-// 4. After each message, the program should pause for several seconds and show a countdown.
+        while (totalDuration > 0)
+        {
+            if (totalDuration >= breathDuration)
+            {
+                Console.WriteLine("Breathe in...");
+                Pause(breathDuration);
+                totalDuration -= breathDuration;
+            }
 
-// 5. It should continue until it has reached the number of seconds the user specified for the duration.
+            if (totalDuration >= holdDuration)
+            {
+                Console.WriteLine("Hold...");
+                Pause(holdDuration);
+                totalDuration -= holdDuration;
+            }
 
-// 6. The activity should conclude with the standard finishing message for all activities.
+            if (totalDuration >= breathDuration)
+            {
+                Console.WriteLine("Breathe out...");
+                Pause(breathDuration);
+                totalDuration -= breathDuration;
+            }
+        }
+
+        FinishActivity();
+    }
 }
