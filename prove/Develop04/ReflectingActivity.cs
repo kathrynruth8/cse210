@@ -4,7 +4,10 @@ public class ReflectingActivity : Activity
     {
         "Think of a time when you stood up for someone else.",
         "Think of a time when you did something really difficult.",
-        // Add more prompts as needed
+        "Think of a time when you helped someone in need.", "Think of a time when you did something truly selfless.", 
+        "Reflect on a challenging decision you made",
+        "Describe a time when you received unexpected kindness from someone.",
+        "Think about a time when you learned something valuable from a mistake"
     };
     private string ReflectingIntro = "This activity will help you reflect on the good things in your life by having you write a response to a given prompt.";
     private List<string> UserResponses = new List<string>();
@@ -41,14 +44,27 @@ public class ReflectingActivity : Activity
 
     private void AskReflectionQuestions()
     {
+        var random = new Random();
         string[] questions = {
             "Why was this experience meaningful to you?",
             "Have you ever done anything like this before?",
+            "How did you get started?",
+            "How did you feel when it was complete?", 
+            "What made this time different than other times when you were not as successful?",
+            "What is your favorite thing about this experience?",
+            "What could you learn from this experience that applies to other situations?",
+            "What did you learn about yourself through this experience?",
+            "How can you keep this experience in mind in the future?"
             // Add more questions as needed
         };
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(ActivityDuration);
 
-        foreach (string question in questions)
+        while (DateTime.Now < endTime)
         {
+            int index = random.Next(questions.Length);
+            string question = questions[index];
+
             Console.WriteLine(question);
             // Display spinner animation or some kind of pause
             Pause(3);

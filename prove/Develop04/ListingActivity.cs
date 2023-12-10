@@ -8,7 +8,12 @@ public class ListingActivity : Activity
         "What are personal strengths of yours?", 
         "Who are people that you have helped this week?", 
         "When have you felt the Holy Ghost this month?",
-        "Who are some of your personal heroes?"
+        "Who are some of your personal heroes?",
+        "Name things that always make you smile, no matter what.",
+        "Describe qualities in yourself that you admire and aspire to enhance.",
+        "Who are people that inspire you to be a better person.",
+        "What are the skills or talents you have that you're proud of developing.",
+        "What are some small acts of kindness you've witnessed or participated in recently."
     };
     private List<string> UserList = new List<string>{};
     
